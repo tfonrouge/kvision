@@ -38,7 +38,7 @@ internal external val splitjsModule: dynamic
 @JsModule("fecha")
 internal external val fechaModule: dynamic
 
-@JsModule("@rjaros/snabbdom-virtualize/strings.js")
+@JsModule("@appcues/snabbdom-virtualize/strings.js")
 internal external val snabbdomVirtualizeModule: dynamic
 
 /**

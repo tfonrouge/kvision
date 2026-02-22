@@ -23,7 +23,7 @@ kotlin {
                 implementation(npm("style-loader", libs.versions.style.loader.get()))
                 implementation(npm("fecha", libs.versions.fecha.get()))
                 implementation(npm("snabbdom", libs.versions.snabbdom.asProvider().get()))
-                implementation(npm("@rjaros/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get()))
+                implementation(npm("@appcues/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get()))
                 implementation(npm("split.js", libs.versions.splitjs.get()))
                 implementation(npm("gettext.js", libs.versions.gettext.js.get()))
                 implementation(npm("gettext-extract", libs.versions.gettext.extract.get()))

@@ -28,7 +28,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("style-loader", libs.versions.style.loader.get())
         resolution("fecha", libs.versions.fecha.get())
         resolution("snabbdom", libs.versions.snabbdom.asProvider().get())
-        resolution("@rjaros/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get())
+        resolution("@appcues/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get())
         resolution("split.js", libs.versions.splitjs.get())
         resolution("gettext.js", libs.versions.gettext.js.get())
         resolution("gettext-extract", libs.versions.gettext.extract.get())
