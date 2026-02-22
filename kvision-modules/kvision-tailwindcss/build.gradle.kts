@@ -14,11 +14,8 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("postcss", libs.versions.postcss.asProvider().get()))
-                implementation(npm("postcss-loader", libs.versions.postcss.loader.get()))
                 implementation(npm("tailwindcss", libs.versions.tailwindcss.get()))
-                implementation(npm("@tailwindcss/postcss", libs.versions.tailwindcss.get()))
-                implementation(npm("cssnano", libs.versions.cssnano.get()))
+                implementation(npm("@tailwindcss/webpack", libs.versions.tailwindcss.get()))
             }
         }
         val jsTest by getting {

@@ -55,11 +55,8 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("tabulator-tables", libs.versions.tabulator.get())
         resolution("toastify-js", libs.versions.toastify.get())
         resolution("tom-select", libs.versions.tom.select.get())
-        resolution("postcss", libs.versions.postcss.asProvider().get())
-        resolution("postcss-loader", libs.versions.postcss.loader.get())
         resolution("tailwindcss", libs.versions.tailwindcss.get())
-        resolution("@tailwindcss/postcss", libs.versions.tailwindcss.get())
-        resolution("cssnano", libs.versions.cssnano.get())
+        resolution("@tailwindcss/webpack", libs.versions.tailwindcss.get())
     }
 }
 

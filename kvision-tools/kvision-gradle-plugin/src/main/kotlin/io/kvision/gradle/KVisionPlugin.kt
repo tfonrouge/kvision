@@ -276,11 +276,8 @@ abstract class KVisionPlugin : Plugin<Project> {
                 resolution("tabulator-tables", kvVersions["tabulator"]!!)
                 resolution("toastify-js", kvVersions["toastify"]!!)
                 resolution("tom-select", kvVersions["tom-select"]!!)
-                resolution("postcss", kvVersions["postcss"]!!)
-                resolution("postcss-loader", kvVersions["postcss-loader"]!!)
                 resolution("tailwindcss", kvVersions["tailwindcss"]!!)
-                resolution("@tailwindcss/postcss", kvVersions["tailwindcss"]!!)
-                resolution("cssnano", kvVersions["cssnano"]!!)
+                resolution("@tailwindcss/webpack", kvVersions["tailwindcss"]!!)
             }
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
                 lockFileDirectory = kvExtension.kotlinJsStoreDirectory.get().asFile
@@ -321,11 +318,8 @@ abstract class KVisionPlugin : Plugin<Project> {
                 override("tabulator-tables", kvVersions["tabulator"]!!)
                 override("toastify-js", kvVersions["toastify"]!!)
                 override("tom-select", kvVersions["tom-select"]!!)
-                override("postcss", kvVersions["postcss"]!!)
-                override("postcss-loader", kvVersions["postcss-loader"]!!)
                 override("tailwindcss", kvVersions["tailwindcss"]!!)
-                override("@tailwindcss/postcss", kvVersions["tailwindcss"]!!)
-                override("cssnano", kvVersions["cssnano"]!!)
+                override("@tailwindcss/webpack", kvVersions["tailwindcss"]!!)
             }
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
                 lockFileDirectory.set(kvExtension.kotlinJsStoreDirectory.get().asFile)
