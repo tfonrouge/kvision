@@ -1,3 +1,4 @@
+@file:JsModule("jquery")
 @file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE")
 
 package io.kvision.jquery
@@ -98,44 +99,7 @@ external interface JQueryGenericPromise<T> {
 
 external interface JQueryPromiseCallback<T>
 
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun <T> JQueryPromiseCallback<T>.invoke(value: T? = null, vararg args: Any) {
-    asDynamic()(value, args)
-}
-
 external interface JQueryPromiseOperator<T, U>
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun <T, U> JQueryPromiseOperator<T, U>.invoke(
-    callback1: JQueryPromiseCallback<T>,
-    vararg callbacksN: JQueryPromiseCallback<Any>
-): JQueryPromise<U> {
-    return asDynamic()(callback1, callbacksN)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun <T, U> JQueryPromiseOperator<T, U>.invoke(
-    callback1: JQueryPromiseCallback<T>,
-    vararg callbacksN: Array<JQueryPromiseCallback<Any>>
-): JQueryPromise<U> {
-    return asDynamic()(callback1, callbacksN)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun <T, U> JQueryPromiseOperator<T, U>.invoke(
-    callback1: Array<JQueryPromiseCallback<T>>,
-    vararg callbacksN: JQueryPromiseCallback<Any>
-): JQueryPromise<U> {
-    return asDynamic()(callback1, callbacksN)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun <T, U> JQueryPromiseOperator<T, U>.invoke(
-    callback1: Array<JQueryPromiseCallback<T>>,
-    vararg callbacksN: Array<JQueryPromiseCallback<Any>>
-): JQueryPromise<U> {
-    return asDynamic()(callback1, callbacksN)
-}
 
 external interface JQueryPromise<T> : JQueryGenericPromise<T> {
     fun state(): String
@@ -398,22 +362,7 @@ external interface JQuerySupport {
 
 external interface JQueryParam
 
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryParam.invoke(obj: Any): String {
-    return asDynamic()(obj)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryParam.invoke(obj: Any, traditional: Boolean): String {
-    return asDynamic()(obj, traditional)
-}
-
 external interface JQueryEventConstructor
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryEventConstructor.invoke(name: String, eventProperties: Any? = null): JQueryEventObject {
-    return asDynamic()(name, eventProperties)
-}
 
 external interface JQueryCoordinates {
     var left: Number
@@ -441,22 +390,9 @@ external interface JQueryAnimationOptions {
 
 external interface JQueryEasingFunction
 
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryEasingFunction.invoke(percent: Number): Number {
-    return asDynamic()(percent)
-}
-
 external interface JQueryEasingFunctions {
     var linear: JQueryEasingFunction
     var swing: JQueryEasingFunction
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryEasingFunctions.get(name: String): JQueryEasingFunction? = asDynamic()[name]
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryEasingFunctions.set(name: String, value: JQueryEasingFunction) {
-    asDynamic()[name] = value
 }
 
 external interface `T$0` {
@@ -629,61 +565,6 @@ external interface JQueryStatic {
     fun post(url: String): JQueryXHR
 
     fun parseHTML(data: String): Array<Any>
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(selector: String, context: Element): JQuery {
-    return asDynamic()(selector, context)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(selector: String, context: JQuery): JQuery {
-    return asDynamic()(selector, context)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(element: Element): JQuery {
-    return asDynamic()(element)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(elementArray: Array<Element>): JQuery {
-    return asDynamic()(elementArray)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(noinline callback: (jQueryAlias: JQueryStatic? /*= null*/) -> Any?): JQuery {
-    return asDynamic()(callback)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(`object`: Any?): JQuery {
-    return asDynamic()(`object`)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(`object`: JQuery): JQuery {
-    return asDynamic()(`object`)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(): JQuery {
-    return asDynamic()()
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(html: String, ownerDocument: Document): JQuery {
-    return asDynamic()(html, ownerDocument)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(html: String, attributes: Any): JQuery {
-    return asDynamic()(html, attributes)
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQueryStatic.invoke(selector: String): JQuery {
-    return asDynamic()(selector)
 }
 
 external interface JQuery {
@@ -1452,27 +1333,5 @@ external interface JQuery {
     fun prevUntil(): JQuery
 }
 
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQuery.get(index: String): Any? = asDynamic()[index]
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQuery.set(index: String, value: Any) {
-    asDynamic()[index] = value
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQuery.get(index: Number): HTMLElement? = asDynamic()[index]
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun JQuery.set(index: Number, value: HTMLElement) {
-    asDynamic()[index] = value
-}
-
-@JsModule("jquery")
-@JsNonModule
 external val jQuery: JQueryStatic = definedExternally
 external val `$`: JQueryStatic = definedExternally
-
-object Factory {
-    fun getInstance(): JQueryStatic = jQuery
-}
