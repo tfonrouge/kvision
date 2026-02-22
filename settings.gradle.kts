@@ -46,6 +46,7 @@ include(
     ":kvision-modules:kvision-routing-navigo",
     ":kvision-modules:kvision-routing-navigo-ng",
     ":kvision-modules:kvision-select-remote",
+    ":kvision-modules:kvision-signal",
     ":kvision-modules:kvision-state",
     ":kvision-modules:kvision-state-flow",
     ":kvision-modules:kvision-tabulator",
