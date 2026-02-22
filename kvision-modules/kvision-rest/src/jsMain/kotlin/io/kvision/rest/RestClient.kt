@@ -306,6 +306,7 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
         }
         restClientConfig.requestFilter?.invoke(requestInit)
         restRequestConfig.requestFilter?.invoke(requestInit)
+        removeNulls(requestInit)
         return Promise { resolve, reject ->
             window.fetch(fetchUrl, requestInit).then { response ->
                 if (response.ok) {
