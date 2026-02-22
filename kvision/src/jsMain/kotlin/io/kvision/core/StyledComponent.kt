@@ -609,7 +609,7 @@ abstract class StyledComponent {
      * CSS grid areas template.
      */
     open var gridTemplateAreas: List<String>? by refreshOnUpdate {
-        setStyleProperty("grid-template-areas", it?.joinToString("\n"))
+        setStyleProperty("grid-template-areas", it?.joinToString("\n") { "\"" + it + "\"" })
     }
 
     /**
