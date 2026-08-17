@@ -40,6 +40,8 @@ import java.time.ZonedDateTime
 
 actual fun registerRemoteTypes() {
     RpcSerialization.customConfiguration = Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
         serializersModule = SerializersModule {
             contextual(LocalDateTime::class, JsonLocalDateTimeSerializer)
             contextual(LocalDate::class, JsonLocalDateSerializer)

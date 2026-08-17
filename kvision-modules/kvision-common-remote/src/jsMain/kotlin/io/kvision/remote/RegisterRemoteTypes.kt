@@ -30,6 +30,8 @@ import kotlin.js.Date
 
 actual fun registerRemoteTypes() {
     RpcSerialization.customConfiguration = Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
         serializersModule = SerializersModule {
             contextual(Date::class, JsonDateSerializer)
         }
