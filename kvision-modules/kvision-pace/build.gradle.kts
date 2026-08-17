@@ -11,13 +11,13 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
                 implementation(npm("pace-progressbar", libs.versions.pace.progressbar.get()))
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
             }

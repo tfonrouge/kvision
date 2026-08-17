@@ -280,8 +280,8 @@ abstract class KVisionPlugin : Plugin<Project> {
                 resolution("@tailwindcss/webpack", kvVersions["tailwindcss"]!!)
             }
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
-                lockFileDirectory = kvExtension.kotlinJsStoreDirectory.get().asFile
-                logger.info("[configureNodeEcosystem.configureYarn] set lockFileDirectory: $lockFileDirectory")
+                lockFileDirectoryProperty.set(kvExtension.kotlinJsStoreDirectory.get().asFile)
+                logger.info("[configureNodeEcosystem.configureYarn] set lockFileDirectory: $lockFileDirectoryProperty")
             }
         }
         rootProject.extensions.findByType(org.jetbrains.kotlin.gradle.targets.js.npm.NpmExtension::class.java)?.apply {

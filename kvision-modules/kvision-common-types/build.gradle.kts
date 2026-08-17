@@ -12,16 +12,16 @@ kotlin {
     kotlinJsTargets()
     kotlinJvmTargets()
     sourceSets {
-        val commonMain by getting {
+        getByName("commonMain") {
             dependencies {
                 api(libs.kotlinx.serialization.json)
             }
         }
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
             }
         }
-        val jvmMain by getting {
+        getByName("jvmMain") {
             dependencies {
             }
         }

@@ -11,13 +11,13 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
                 implementation(npm("jquery", libs.versions.jquery.get()))
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
             }

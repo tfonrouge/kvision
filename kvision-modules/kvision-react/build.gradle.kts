@@ -11,7 +11,7 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
                 api(libs.kotlin.react)
@@ -20,7 +20,7 @@ kotlin {
                 implementation(npm("react-dom", libs.versions.react.get()))
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(project(":kvision-modules:kvision-testutils"))

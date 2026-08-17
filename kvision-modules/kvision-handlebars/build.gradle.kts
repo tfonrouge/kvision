@@ -11,14 +11,14 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
                 implementation(npm("handlebars", libs.versions.handlebars.asProvider().get()))
                 implementation(npm("handlebars-loader", libs.versions.handlebars.loader.get()))
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
             }

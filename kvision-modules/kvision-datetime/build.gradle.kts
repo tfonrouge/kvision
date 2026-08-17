@@ -11,14 +11,14 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
                 implementation(npm("@popperjs/core", libs.versions.popperjs.core.get()))
                 implementation(npm("@eonasdan/tempus-dominus", libs.versions.tempus.dominus.get()))
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(project(":kvision-modules:kvision-testutils"))

@@ -11,14 +11,14 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
                 api(libs.redux.kotlin)
                 api(libs.redux.kotlin.thunk)
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(project(":kvision-modules:kvision-testutils"))

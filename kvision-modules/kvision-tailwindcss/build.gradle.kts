@@ -11,14 +11,14 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
                 implementation(npm("tailwindcss", libs.versions.tailwindcss.get()))
                 implementation(npm("@tailwindcss/webpack", libs.versions.tailwindcss.get()))
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(project(":kvision-modules:kvision-testutils"))

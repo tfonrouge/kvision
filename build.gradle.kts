@@ -22,7 +22,7 @@ allprojects {
 
 rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
-        lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
+        lockFileDirectoryProperty = project.rootDir.resolve(".kotlin-js-store")
         resolution("zzz-kvision-assets", libs.versions.npm.kvision.assets.get())
         resolution("css-loader", libs.versions.css.loader.get())
         resolution("style-loader", libs.versions.style.loader.get())

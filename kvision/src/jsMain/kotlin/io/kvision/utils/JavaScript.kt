@@ -86,7 +86,6 @@ fun deepMerge(target: dynamic, source: dynamic): dynamic {
     return target
 }
 
-@Suppress("NOTHING_TO_INLINE")
-inline fun <T> useModule(@Suppress("UNUSED_PARAMETER") module: T) {
+fun <T> useModule(@Suppress("UNUSED_PARAMETER") module: T) {
     // empty body
 }

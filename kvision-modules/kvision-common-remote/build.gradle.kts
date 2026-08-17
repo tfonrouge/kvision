@@ -12,7 +12,7 @@ kotlin {
     kotlinJsTargets()
     kotlinJvmTargets()
     sourceSets {
-        val commonMain by getting {
+        getByName("commonMain") {
             dependencies {
                 api(libs.kotlinx.coroutines.core)
                 api(libs.kotlinx.serialization.json)
@@ -20,21 +20,21 @@ kotlin {
                 api(libs.kilua.rpc.core)
             }
         }
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(project(":kvision-modules:kvision-testutils"))
             }
         }
-        val jvmMain by getting {
+        getByName("jvmMain") {
             dependencies {
             }
         }
-        val jvmTest by getting {
+        getByName("jvmTest") {
             dependencies {
             }
         }

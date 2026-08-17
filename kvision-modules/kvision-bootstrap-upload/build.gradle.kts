@@ -11,7 +11,7 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision-modules:kvision-common-types"))
                 api(project(":kvision-modules:kvision-jquery"))
@@ -20,7 +20,7 @@ kotlin {
                 implementation(npm("bootstrap-fileinput", libs.versions.bootstrap.fileinput.get()))
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(project(":kvision-modules:kvision-testutils"))

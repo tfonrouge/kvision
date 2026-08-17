@@ -176,7 +176,9 @@ enum class Filter(internal val filter: String) {
     GREATER(">"),
     GREATEREQ(">="),
     IN("in"),
-    REGEX("regex")
+    REGEX("regex"),
+    SMART("smart"),
+    SMARTER("smarter")
 }
 
 /**
@@ -1151,6 +1153,7 @@ data class TabulatorOptions<T : Any>(
     val clipboardCopyStyled: Boolean? = null,
     val clipboardPasteParser: dynamic = null,
     val clipboardPasteAction: dynamic = null,
+    val selectableRangeInitializeDefault: Boolean? = null
 )
 
 /**
@@ -1384,5 +1387,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (clipboardCopyStyled != null) this.clipboardCopyStyled = clipboardCopyStyled
         if (clipboardPasteParser != null) this.clipboardPasteParser = clipboardPasteParser
         if (clipboardPasteAction != null) this.clipboardPasteAction = clipboardPasteAction
+        if (selectableRangeInitializeDefault != null) this.selectableRangeInitializeDefault =
+            selectableRangeInitializeDefault
     } as Tabulator.Options
 }

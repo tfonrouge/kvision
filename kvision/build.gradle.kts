@@ -11,7 +11,7 @@ kotlin {
     compilerOptions()
     kotlinJsTargets()
     sourceSets {
-        val jsMain by getting {
+        getByName("jsMain") {
             dependencies {
                 api(project(":kvision-modules:kvision-common-types"))
                 api(libs.kotlinx.coroutines.core.js)
@@ -29,7 +29,7 @@ kotlin {
                 implementation(npm("gettext-extract", libs.versions.gettext.extract.get()))
             }
         }
-        val jsTest by getting {
+        getByName("jsTest") {
             dependencies {
                 implementation(devNpm("karma-junit-reporter", libs.versions.karma.junit.reporter.get()))
                 implementation(kotlin("test-js"))
