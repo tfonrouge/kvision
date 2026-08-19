@@ -41,9 +41,8 @@ internal object JsonLocalDateTimeSerializer : KSerializer<LocalDateTime> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("java.time.LocalDateTime")
 
     override fun deserialize(decoder: Decoder): LocalDateTime {
-        @Suppress("MagicNumber")
         return LocalDateTime.parse(
-            decoder.decodeString().split("[").first().dropLast(6),
+            removeTimezone(decoder.decodeString()),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")
         )
     }
@@ -61,9 +60,8 @@ internal object JsonLocalDateSerializer : KSerializer<LocalDate> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("java.time.LocalDate")
 
     override fun deserialize(decoder: Decoder): LocalDate {
-        @Suppress("MagicNumber")
         return LocalDate.parse(
-            decoder.decodeString().split("[").first().dropLast(6),
+            removeTimezone(decoder.decodeString()),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")
         )
     }
@@ -81,9 +79,8 @@ internal object JsonLocalTimeSerializer : KSerializer<LocalTime> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("java.time.LocalTime")
 
     override fun deserialize(decoder: Decoder): LocalTime {
-        @Suppress("MagicNumber")
         return LocalTime.parse(
-            decoder.decodeString().split("[").first().dropLast(6),
+            removeTimezone(decoder.decodeString()),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS")
         )
     }
@@ -104,7 +101,7 @@ internal object JsonOffsetDateTimeSerializer : KSerializer<OffsetDateTime> {
 
     override fun deserialize(decoder: Decoder): OffsetDateTime {
         return OffsetDateTime.parse(
-            decoder.decodeString().split("[").first(),
+            decoder.decodeString().substringBefore('['),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ")
         )
     }
@@ -125,7 +122,7 @@ internal object JsonOffsetTimeSerializer : KSerializer<OffsetTime> {
 
     override fun deserialize(decoder: Decoder): OffsetTime {
         return OffsetTime.parse(
-            decoder.decodeString().split("[").first(),
+            decoder.decodeString().substringBefore('['),
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ")
         )
     }
