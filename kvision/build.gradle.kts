@@ -39,5 +39,5 @@ kotlin {
     }
 }
 
-setupDokka(tasks.dokkaGeneratePublicationHtml, mdPath = "../", modulesPath = "")
+setupDokka(mdPath = "../", modulesPath = "")
 setupPublication()

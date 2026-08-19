@@ -72,7 +72,7 @@ extensions.getByType<SigningExtension>().run {
     sign(extensions.getByType<PublishingExtension>().publications)
 }
 
-setupDokka(tasks.dokkaGeneratePublicationHtml, modulesPath = "kvision-tools/")
+setupDokka(modulesPath = "kvision-tools/")
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()

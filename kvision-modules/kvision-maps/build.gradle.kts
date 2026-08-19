@@ -29,5 +29,5 @@ kotlin {
     }
 }
 
-setupDokka(tasks.dokkaGeneratePublicationHtml)
+setupDokka()
 setupPublication()

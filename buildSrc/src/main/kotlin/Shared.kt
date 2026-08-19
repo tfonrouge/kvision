@@ -9,7 +9,7 @@ import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 import org.jetbrains.dokka.gradle.DokkaExtension
-import org.jetbrains.dokka.gradle.tasks.DokkaGeneratePublicationTask
+import org.jetbrains.dokka.gradle.tasks.DokkaBaseTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import java.net.URI
@@ -116,10 +116,8 @@ fun Project.setupPublication() {
     }
 }
 
-fun Project.setupDokka(provider: TaskProvider<DokkaGeneratePublicationTask>, mdPath: String = "../../", modulesPath: String = "kvision-modules/") {
+fun Project.setupDokka(mdPath: String = "../../", modulesPath: String = "kvision-modules/") {
     tasks.register("javadocJar", Jar::class.java) {
-        it.dependsOn(provider)
-        it.from(provider.map { it.outputDirectory })
         it.archiveClassifier.set("javadoc")
     }
     extensions.getByType(DokkaExtension::class.java).run {
