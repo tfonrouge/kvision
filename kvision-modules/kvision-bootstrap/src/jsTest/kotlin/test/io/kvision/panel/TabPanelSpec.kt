@@ -31,9 +31,12 @@ import io.kvision.panel.Root
 import io.kvision.panel.Tab
 import io.kvision.panel.TabPanel
 import io.kvision.panel.tab
+import io.kvision.panel.vPanel
 import io.kvision.test.DomSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 class TabPanelSpec : DomSpec {
 
@@ -178,6 +181,71 @@ class TabPanelSpec : DomSpec {
                 element?.innerHTML,
                 "Should remove tab"
             )
+        }
+    }
+
+    @Test
+    fun dispose() {
+        run {
+            lateinit var tab: Tab
+            var hookFired = 0
+            val tabs = TabPanel {
+                tab = tab("One") {
+                    addBeforeDisposeHook {
+                        hookFired++
+                        assertNotNull(tab.parent, "Should dispose the tab before detaching it")
+                    }
+                }
+            }
+            tabs.dispose()
+            assertEquals(1, hookFired, "Should dispose every tab")
+            assertEquals(0, tabs.getSize(), "Should remove every disposed tab")
+            assertNull(tab.parent, "Should detach every disposed tab")
+        }
+    }
+
+    @Test
+    fun disposeWithoutChangeTabEvents() {
+        run {
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val tabs = TabPanel {
+                tab("ABC") {
+                    span("abc")
+                }
+                tab("DEF") {
+                    span("def")
+                }
+            }
+            root.add(tabs)
+            val element = assertNotNull(tabs.getElement(), "Should render the tab panel")
+            var changeTabEvents = 0
+            element.addEventListener("changeTab", { changeTabEvents++ })
+            tabs.dispose()
+            assertEquals(0, changeTabEvents, "Should not dispatch changeTab events while disposing")
+        }
+    }
+
+    @Test
+    fun disposeTabContent() {
+        run {
+            var activeHooks = 0
+            var inactiveHooks = 0
+            val tabs = TabPanel {
+                tab("Active") {
+                    vPanel {
+                        addBeforeDisposeHook { activeHooks++ }
+                    }
+                }
+                tab("Inactive") {
+                    vPanel {
+                        addBeforeDisposeHook { inactiveHooks++ }
+                    }
+                }
+            }
+            tabs.dispose()
+            tabs.dispose()
+            assertEquals(1, activeHooks, "Should dispose the content of the active tab exactly once")
+            assertEquals(1, inactiveHooks, "Should dispose the content of the inactive tab exactly once")
         }
     }
 

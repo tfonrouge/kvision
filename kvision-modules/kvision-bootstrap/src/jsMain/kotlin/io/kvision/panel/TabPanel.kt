@@ -342,6 +342,13 @@ open class TabPanel(
         removeAll()
     }
 
+    override fun dispose() {
+        super.dispose()
+        tabs.toList().forEach { it.dispose() }
+        tabs.forEach { it.clearParent() }
+        tabs.clear()
+    }
+
     /**
      * A helper component for rendering tabs.
      */
