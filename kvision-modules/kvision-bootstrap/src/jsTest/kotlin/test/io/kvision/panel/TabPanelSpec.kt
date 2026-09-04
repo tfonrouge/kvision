@@ -185,6 +185,23 @@ class TabPanelSpec : DomSpec {
     }
 
     @Test
+    fun removeAll() {
+        run {
+            val tabs = TabPanel {
+                repeat(4) {
+                    tab("Tab $it") {}
+                }
+            }
+            val originalTabs = tabs.getTabs().toList()
+            tabs.removeAll()
+            assertEquals(0, tabs.getSize(), "Should remove all tabs")
+            originalTabs.forEach {
+                assertNull(it.parent, "Should detach every removed tab")
+            }
+        }
+    }
+
+    @Test
     fun dispose() {
         run {
             lateinit var tab: Tab
@@ -246,6 +263,23 @@ class TabPanelSpec : DomSpec {
             tabs.dispose()
             assertEquals(1, activeHooks, "Should dispose the content of the active tab exactly once")
             assertEquals(1, inactiveHooks, "Should dispose the content of the inactive tab exactly once")
+        }
+    }
+
+    @Test
+    fun disposeAll() {
+        run {
+            var hooksFired = 0
+            val tabs = TabPanel {
+                repeat(4) {
+                    tab("Tab $it") {
+                        addBeforeDisposeHook { hooksFired++ }
+                    }
+                }
+            }
+            tabs.disposeAll()
+            assertEquals(4, hooksFired, "Should dispose every tab")
+            assertEquals(0, tabs.getSize(), "Should remove every disposed tab")
         }
     }
 
