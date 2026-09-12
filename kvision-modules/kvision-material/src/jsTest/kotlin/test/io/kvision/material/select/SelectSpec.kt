@@ -6,6 +6,7 @@ import io.kvision.material.select.MdSelectOption
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
+import kotlinx.browser.document
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -38,6 +39,33 @@ class SelectSpec : DomSpec {
             select.dispose()
             assertEquals(1, hookFired, "Should dispose every option")
             assertNull(option.parent, "Should detach every disposed option")
+        }
+    }
+
+    @Test
+    fun remove() {
+        run {
+            val root = Root("test", containerType = ContainerType.FIXED)
+            val keep = MdSelectOption("keep")
+            val drop = MdSelectOption("drop")
+            val select = MdOutlinedSelect {
+                add(keep)
+                add(drop)
+            }
+            root.add(select)
+            select.remove(drop)
+            val element = document.getElementById("test")
+            assertContainsHtml(
+                "<md-select-option value=\"keep\"></md-select-option>",
+                element?.innerHTML,
+                "Should keep the options which were not removed"
+            )
+            assertEquals(
+                false,
+                element?.innerHTML?.contains("drop"),
+                "Should remove the option instead of adding it again"
+            )
+            assertNull(drop.parent, "Should detach the removed option")
         }
     }
 }

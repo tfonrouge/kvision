@@ -246,7 +246,7 @@ open class MdSelect internal constructor(
     }
 
     override fun remove(item: MdSelectOption) {
-        listDelegate.add(item)
+        listDelegate.remove(item)
     }
 
     override fun removeAt(position: Int) {

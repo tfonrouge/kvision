@@ -6,6 +6,7 @@ import io.kvision.material.tabs.MdTabs
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
+import kotlinx.browser.document
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -55,6 +56,33 @@ class TabsSpec : DomSpec {
             }
             tabs.dispose()
             assertEquals(2, contentHooks, "Should dispose the tabs of every position")
+        }
+    }
+
+    @Test
+    fun remove() {
+        run {
+            val root = Root("test", containerType = ContainerType.FIXED)
+            val keep = MdSecondaryTab("Keep")
+            val drop = MdSecondaryTab("Drop")
+            val tabs = MdTabs {
+                add(keep)
+                add(drop)
+            }
+            root.add(tabs)
+            tabs.remove(drop)
+            val element = document.getElementById("test")
+            assertContainsHtml(
+                "<md-secondary-tab>Keep</md-secondary-tab>",
+                element?.innerHTML,
+                "Should keep the tabs which were not removed"
+            )
+            assertEquals(
+                false,
+                element?.innerHTML?.contains("Drop"),
+                "Should remove the tab instead of adding it again"
+            )
+            assertNull(drop.parent, "Should detach the removed tab")
         }
     }
 }

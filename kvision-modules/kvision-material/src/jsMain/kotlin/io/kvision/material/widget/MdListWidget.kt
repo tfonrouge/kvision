@@ -79,7 +79,7 @@ abstract class MdListWidget<T : MdItemWidget> internal constructor(
     }
 
     override fun remove(item: T) {
-        listDelegate.add(item)
+        listDelegate.remove(item)
     }
 
     override fun removeAt(position: Int) {
