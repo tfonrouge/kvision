@@ -155,6 +155,11 @@ open class MdSelect internal constructor(
         getElementD().selectedIndex = selectedIndex
     }
 
+    override fun dispose() {
+        super.dispose()
+        listDelegate.dispose()
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Rendering
     ///////////////////////////////////////////////////////////////////////////

@@ -111,4 +111,18 @@ internal class MdListWidgetContainerDelegate<T : MdItemWidget>(
         items.onEach { it.dispose() }
         removeAll()
     }
+
+    /**
+     * Disposes every item as part of the owning widget's own disposal.
+     *
+     * Unlike [disposeAll] this does not go through [removeAll]: the owning widget is being
+     * disposed, so refreshing it and notifying [onRemoved] observers of removals nobody can
+     * observe would be pure side effect. Items are disposed before being detached, so dispose
+     * hooks registered inside an item still see it attached.
+     */
+    fun dispose() {
+        items.toList().forEach { it.dispose() }
+        items.forEach { it.clearParent() }
+        items.clear()
+    }
 }

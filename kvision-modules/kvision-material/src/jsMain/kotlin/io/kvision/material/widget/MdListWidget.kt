@@ -49,6 +49,11 @@ abstract class MdListWidget<T : MdItemWidget> internal constructor(
         listDelegate.updateParent(parent)
     }
 
+    override fun dispose() {
+        super.dispose()
+        listDelegate.dispose()
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Rendering
     ///////////////////////////////////////////////////////////////////////////
