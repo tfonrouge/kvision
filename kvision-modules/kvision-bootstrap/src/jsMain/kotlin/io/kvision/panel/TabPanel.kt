@@ -334,12 +334,19 @@ open class TabPanel(
     }
 
     override fun removeAll() {
-        tabs.forEach { removeTab(it) }
+        tabs.toList().forEach { removeTab(it) }
     }
 
     override fun disposeAll() {
-        tabs.forEach { it.dispose() }
+        tabs.toList().forEach { it.dispose() }
         removeAll()
+    }
+
+    override fun dispose() {
+        super.dispose()
+        tabs.toList().forEach { it.dispose() }
+        tabs.forEach { it.clearParent() }
+        tabs.clear()
     }
 
     /**
